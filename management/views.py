@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from models import Student, Teacher,Lesson,Score
+from .models import Student, Teacher,Lesson,Score
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 # Create your views here.
@@ -20,13 +20,13 @@ def change(request):
 
 
 def login(request):
-    print request.POST.get("sid", None)
+#    print request.POST.get("sid", None)
     if request.method == "POST":
         type = request.POST.get("fruit")
         name = request.POST.get("username", None)
         ps = request.POST.get("password", None)
 
-    print (type)
+    #print (type)
     if type == "1":
 
         try:
@@ -34,12 +34,12 @@ def login(request):
         except Student.DoesNotExist:
             return HttpResponseRedirect("/")
         idnum = int(str(s.ID_number)[-6:])
-        print idnum
-        print "ps=", ps
+        #print idnum
+        #print "ps=", ps
         if idnum == int(ps):
             student = Student.objects.get(s_number=name)
             score = Score.objects.filter(sNum=name)
-            print score[0].sName
+            #print score[0].sName
             return render(request, "student.html", {"student": student, "score": score})
         else:
             return HttpResponseRedirect("/")
