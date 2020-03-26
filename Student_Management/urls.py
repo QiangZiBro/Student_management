@@ -17,6 +17,9 @@ from django.conf.urls import url
 from django.contrib import admin
 from management import views
 
+admin.site.site_title = '管理后台'
+admin.site.site_header = '北京大学管理后台'
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index),

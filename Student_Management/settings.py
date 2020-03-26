@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'm#t!ubmj!s)=+3cs4hy@n1vs55_xm86qx7dg#p(kdnqdj-1#zv'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -72,7 +70,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Student_Management.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -82,7 +79,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -102,7 +98,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 LANGUAGE_CODE = 'zh-hans'
@@ -114,7 +109,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -141,13 +135,13 @@ SIMPLEUI_INDEX = 'https://www.88cto.com'
 SIMPLEUI_HOME_INFO = False
 
 # 首页显示快速操作
-# SIMPLEUI_HOME_QUICK = False
+SIMPLEUI_HOME_QUICK = False
 
 # 首页显示最近动作
-# SIMPLEUI_HOME_ACTION = False
+SIMPLEUI_HOME_ACTION = False
 
 # 自定义SIMPLEUI的Logo
-# SIMPLEUI_LOGO = 'https://avatars2.githubusercontent.com/u/13655483?s=60&v=4'
+SIMPLEUI_LOGO = 'https://avatars2.githubusercontent.com/u/13655483?s=60&v=4'
 
 # 登录页粒子动画，默认开启，False关闭
 # SIMPLEUI_LOGIN_PARTICLES = False
@@ -165,36 +159,46 @@ SIMPLEUI_CONFIG = {
         #     'icon': 'fas fa-code',
         #     'url': 'https://gitee.com/tompeppa/simpleui'
         # },
+        # {
+        #     'app': 'auth',
+        #     'name': '权限认证',
+        #     'icon': 'fas fa-user-shield',
+        #     'models': [{
+        #         'name': '用户',
+        #         'icon': 'fa fa-user',
+        #         'url': 'auth/user/'
+        #     }]
+        # },
         {
-            'app': 'auth',
-            'name': '权限认证',
-            'icon': 'fas fa-user-shield',
+            'name': '就业推荐',
+            'url': 'http://baidu.com',
+            'icon': 'far fa-surprise'
+
+        },
+        {
+            'name': '信息统计',
+            'icon': 'fa fa-file',
             'models': [{
-                'name': '用户',
-                'icon': 'fa fa-user',
-                'url': 'auth/user/'
+                'name': '毕业生去向',
+                'url': 'http://baidu.com',
+                'icon': 'far fa-surprise'
             }]
         },
-        # {
-        #     'name': '测试',
-        #     'icon': 'fa fa-file',
-        #     'models': [{
-        #         'name': 'Baidu',
-        #         'url': 'http://baidu.com',
-        #         'icon': 'far fa-surprise'
-        #     }, {
-        #         'name': '内网穿透',
-        #         'url': 'https://www.wezoz.com',
-        #         'icon': 'fab fa-github'
-        #     }, {
-        #         'name': '内网穿透',
-        #         'url': 'https://www.wezoz.com',
-        #         'icon': 'fab fa-github'
-        #     }, {
-        #         'name': '登录页嵌套测试',
-        #         'url': '/login'
-        #     }]
-        # }
+        {
+            'name': '这里用来测试',
+            'icon': 'fa fa-file',
+            'models': [
+                {
+                    'name': 'Baidu',
+                    'url': 'http://baidu.com',
+                    'icon': 'far fa-surprise'
+                },
+                {
+                    'name': '登录页嵌套测试',
+                    'url': '/'
+                }
+            ]
+        }
     ]
 }
 
