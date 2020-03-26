@@ -25,5 +25,4 @@ urlpatterns = [
     url(r'^$', views.index),
     url(r'change/', views.change),
     url(r'login/$', views.login)
-
 ]
