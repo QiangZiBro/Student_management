@@ -10,8 +10,8 @@ class Student(models.Model):
     s_name = models.CharField(max_length=20, verbose_name='姓名', help_text="学生姓名")
     s_gender = models.CharField(default='男', verbose_name='性别', max_length=6, choices=[('male', '男'), ('female', '女')])
 
-    ID_number = models.IntegerField(null=False)
-    native_place = models.CharField(max_length=30)
+    ID_number = models.IntegerField(null=False, verbose_name='身份证号码')
+    native_place = models.CharField(max_length=30,verbose_name='家庭地址')
 
     def __str__(self):
         return self.s_name
@@ -53,7 +53,7 @@ class Score(models.Model):
     s_score = models.IntegerField(default=0, verbose_name="分数")
 
     def __str__(self):
-        return self.s_score
+        return str(self.s_score)
 
     class Meta:
         verbose_name = "成绩"

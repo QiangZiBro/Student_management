@@ -4,13 +4,13 @@ from __future__ import unicode_literals
 from django.contrib import admin
 from .models import Student, Lesson, Teacher, Score, Teaching, Account
 
+
 # Register your models here.
 # admin.site.register(Student)
 
 
-
 @admin.register(Account)
-class StudentAdmin(admin.ModelAdmin):
+class AccountAdmin(admin.ModelAdmin):
     # 要显示的字段
     list_display = ('a_student', 'a_password')
 
@@ -21,6 +21,7 @@ class StudentAdmin(admin.ModelAdmin):
     list_per_page = 10
 
     actions_on_top = True
+
 
 # Register your models here.
 # Example
@@ -39,7 +40,7 @@ class StudentAdmin(admin.ModelAdmin):
 
 
 @admin.register(Lesson)
-class StudentAdmin(admin.ModelAdmin):
+class LessonAdmin(admin.ModelAdmin):
     # 要显示的字段
     list_display = ('l_name',)
 
@@ -53,7 +54,7 @@ class StudentAdmin(admin.ModelAdmin):
 
 
 @admin.register(Teacher)
-class StudentAdmin(admin.ModelAdmin):
+class TeacherAdmin(admin.ModelAdmin):
     # 要显示的字段
     list_display = ('t_name', 't_gender')
 
@@ -67,7 +68,7 @@ class StudentAdmin(admin.ModelAdmin):
 
 
 @admin.register(Score)
-class StudentAdmin(admin.ModelAdmin):
+class ScoreAdmin(admin.ModelAdmin):
     # 要显示的字段
     list_display = ('s_student', 's_lesson', 's_score')
 
@@ -81,7 +82,7 @@ class StudentAdmin(admin.ModelAdmin):
 
 
 @admin.register(Teaching)
-class StudentAdmin(admin.ModelAdmin):
+class TeachingAdmin(admin.ModelAdmin):
     # 要显示的字段
     list_display = ('t_teacher', 't_lesson')
 
