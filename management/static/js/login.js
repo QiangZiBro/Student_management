@@ -14,14 +14,14 @@ $(document).ready(function(){
             type   : 'empty',
             prompt : '用户名不能为空'
           },
-            {
-                type:'number',
-                prompt:'用户名只能是数字'
-            },
-            {
-              type:'exactLength[10]',
-                prompt:'用户名长度不正确'
-            }
+//            {
+//                type:'number',
+//                prompt:'用户名只能是数字'
+//            },
+//            {
+//              type:'exactLength[10]',
+//                prompt:'用户名长度不正确'
+//            }
         ]
       },
 
@@ -32,14 +32,14 @@ $(document).ready(function(){
               type: 'empty',
               prompt: '密码不能为空'
             },
-            {
-                type:'number',
-                prompt:'密码只能是数字'
-            },
-            {
-              type:'exactLength[6]',
-                prompt:'密码长度不正确'
-            }
+//            {
+//                type:'number',
+//                prompt:'密码只能是数字'
+//            },
+//            {
+//              type:'exactLength[6]',
+//                prompt:'密码长度不正确'
+//            }
       ]
       }
 

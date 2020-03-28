@@ -6,12 +6,12 @@ from django.db import models
 
 # Create your models here.
 class Student(models.Model):
-    s_number = models.AutoField(primary_key=True)
+    s_number = models.AutoField(primary_key=True, verbose_name='学号（pk）')
     s_name = models.CharField(max_length=20, verbose_name='姓名', help_text="学生姓名")
     s_gender = models.CharField(default='男', verbose_name='性别', max_length=6, choices=[('male', '男'), ('female', '女')])
 
     ID_number = models.IntegerField(null=False, verbose_name='身份证号码')
-    native_place = models.CharField(max_length=30,verbose_name='家庭地址')
+    native_place = models.CharField(max_length=30, verbose_name='家庭地址')
 
     def __str__(self):
         return self.s_name
@@ -22,7 +22,7 @@ class Student(models.Model):
 
 
 class Lesson(models.Model):
-    l_number = models.AutoField(primary_key=True)
+    l_number = models.AutoField(primary_key=True, verbose_name='课程号（pk）')
     l_name = models.CharField(unique=True, max_length=30, verbose_name="课程")
 
     def __str__(self):
@@ -34,7 +34,7 @@ class Lesson(models.Model):
 
 
 class Teacher(models.Model):
-    t_number = models.AutoField(primary_key=True)
+    t_number = models.AutoField(primary_key=True, verbose_name='职工号（pk）')
     t_name = models.CharField(max_length=10, verbose_name="姓名")
     t_gender = models.CharField(default='男', verbose_name='性别', max_length=6, choices=[('male', '男'), ('female', '女')])
 
@@ -46,9 +46,20 @@ class Teacher(models.Model):
         verbose_name_plural = "教师管理"
 
 
+class Teaching(models.Model):
+    t_lesson = models.ForeignKey(Lesson, verbose_name="课程", default="", on_delete=models.CASCADE)
+    t_teacher = models.ForeignKey(Teacher, verbose_name="任课教师", default="", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "{}({})".format(self.t_lesson, self.t_teacher)
+    class Meta:
+        unique_together = ("t_lesson", "t_teacher")  # 同一个老师同一门课程不能重复
+        verbose_name = "教学"
+        verbose_name_plural = "教学管理"
+
+
 class Score(models.Model):
-    s_id = models.AutoField(primary_key=True)
-    s_lesson = models.ForeignKey(Lesson, verbose_name="课程", default="", on_delete=models.CASCADE)
+    s_lesson = models.ForeignKey(Teaching, verbose_name="课程", default="", on_delete=models.CASCADE)
     s_student = models.ForeignKey(Student, verbose_name="学生", default="", on_delete=models.CASCADE)
     s_score = models.IntegerField(default=0, verbose_name="分数")
 
@@ -56,21 +67,13 @@ class Score(models.Model):
         return str(self.s_score)
 
     class Meta:
+        unique_together = ("s_student", "s_lesson")  # 同一个学生同一门课程不能重复
         verbose_name = "成绩"
         verbose_name_plural = "成绩管理"
 
 
-class Teaching(models.Model):
-    t_lesson = models.ForeignKey(Lesson, verbose_name="课程", default="", on_delete=models.CASCADE)
-    t_teacher = models.ForeignKey(Teacher, verbose_name="任课教师", default="", on_delete=models.CASCADE, unique=True)
-
-    class Meta:
-        verbose_name = "教学"
-        verbose_name_plural = "教学管理"
-
-
 class Account(models.Model):
-    a_student = models.ForeignKey(Student, verbose_name="学生", default="", on_delete=models.CASCADE)
+    a_student = models.ForeignKey(Student, verbose_name="学生", default="", on_delete=models.CASCADE, unique=True)
     a_password = models.CharField(verbose_name="密码", default="123456", max_length=20)
 
     class Meta:
