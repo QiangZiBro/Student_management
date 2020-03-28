@@ -33,20 +33,6 @@ class StudentAdmin(admin.ModelAdmin):
 admin.site.register(Student, StudentAdmin)
 
 
-@admin.register(Lesson)
-class LessonAdmin(admin.ModelAdmin):
-    # 要显示的字段
-    list_display = ('l_number', 'l_name',)
-
-    # 需要搜索的字段
-    search_fields = ('l_name',)
-
-    # 分页显示，一页的数量
-    list_per_page = 10
-
-    actions_on_top = True
-
-
 @admin.register(Teacher)
 class TeacherAdmin(admin.ModelAdmin):
     # 要显示的字段
@@ -54,6 +40,20 @@ class TeacherAdmin(admin.ModelAdmin):
 
     # 需要搜索的字段
     search_fields = ('t_name',)
+
+    # 分页显示，一页的数量
+    list_per_page = 10
+
+    actions_on_top = True
+
+
+@admin.register(Lesson)
+class LessonAdmin(admin.ModelAdmin):
+    # 要显示的字段
+    list_display = ('l_number', 'l_name', 'l_credit')
+
+    # 需要搜索的字段
+    search_fields = ('l_name',)
 
     # 分页显示，一页的数量
     list_per_page = 10
