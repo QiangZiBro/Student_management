@@ -21,21 +21,29 @@ def change(request):
 
 
 def login(request):
+    mytype = request.POST.get("fruit")
+    print(mytype)
     if request.method == "POST":
-        type = request.POST.get("fruit")
+        mytype = request.POST.get("fruit")
         name = request.POST.get("username", None)
         ps = request.POST.get("password", None)
 
-    if type == "1":
+    if mytype == "1":
 
+        # try:
+        s = Student.objects.get(s_number=name)
+        #
+        # except Student.DoesNotExist:
+        #     return HttpResponseRedirect("/")
         try:
-            s = Student.objects.get(s_number=name)
-        except Student.DoesNotExist:
-            return HttpResponseRedirect("/")
-        password_in_db = Account.objects.get(a_student=s).a_password
-        print("id_num:{}, ps:{}".format(password_in_db, ps))
+            password_in_db = Account.objects.get(a_student=s).a_password
+        except Exception as e:
+            print(e)
+        # print("id_num:{}, ps:{}".format(password_in_db, ps))
         if password_in_db == ps:
             score = Score.objects.filter(s_student=s)
+            # lessons = Lesson.objects.all()
+            # print(lessons)
             return render(request, "student.html", {"student": s, "score": score})
         else:
             return HttpResponseRedirect("/")

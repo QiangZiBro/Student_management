@@ -18,11 +18,13 @@ from django.contrib import admin
 from management import views
 
 admin.site.site_title = '管理后台'
-admin.site.site_header = '北京大学管理后台'
+admin.site.site_header = '河南工业大学管理后台'
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    # url(r'', admin.site.urls),
     url(r'^$', views.index),
     url(r'change/', views.change),
-    url(r'login/$', views.login)
+    url(r'^login/$', views.login),
+    # url(r'login', views.login)
 ]

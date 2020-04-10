@@ -6,15 +6,23 @@ from django.db import models
 
 # Create your models here.
 class Student(models.Model):
-    s_number = models.AutoField(primary_key=True, verbose_name='学号（pk）')
+    s_number = models.CharField(primary_key=True, max_length=20, verbose_name='学号（pk）')
     s_name = models.CharField(max_length=20, verbose_name='姓名', help_text="学生姓名")
     s_gender = models.CharField(default='男', verbose_name='性别', max_length=6, choices=[('male', '男'), ('female', '女')])
 
     ID_number = models.CharField(default="", max_length=19, null=False, verbose_name='身份证号码')
     native_place = models.CharField(default="", max_length=30, verbose_name='家庭地址')
+    employ_recommend = models.TextField(verbose_name='就业推荐', max_length=30, default='CS')
+
 
     def __str__(self):
         return self.s_name
+
+    # def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+    #     # some actions
+    #     self.s_number = str(int(self.s_number) + 10000)
+    #     return super().save(force_insert=force_insert, force_update=force_update, using=using,
+    #                         update_fields=update_fields)
 
     class Meta:
         verbose_name = "学生"
@@ -64,7 +72,7 @@ class Teaching(models.Model):
 
 
 class Score(models.Model):
-    s_lesson = models.ForeignKey(Teaching, verbose_name="课程", default="", on_delete=models.CASCADE)
+    s_lesson = models.ForeignKey(Lesson, verbose_name="课程", default="", on_delete=models.CASCADE)
     s_student = models.ForeignKey(Student, verbose_name="学生", default="", on_delete=models.CASCADE)
     s_score = models.IntegerField(default=0, verbose_name="分数")
     s_comment = models.TextField(default="", verbose_name="教师评语")
